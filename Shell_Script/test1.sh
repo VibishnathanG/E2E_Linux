@@ -7,18 +7,105 @@
 
 
 #variables
-a=10
-b=20
+read -p "Enter the a value: " a
+# a=1
+b=2
 student=vibish
 name="VibiShNaTHaN"
-list=[1,2,3,4,5,6]
-mlist=["vibi","Hi",'nathan',5,6]
+list=( 1 2 3 4 5 6 )
+# mlist=["vibi","Hi",'nathan',5,6]
 set={1,2,3,4}
 dict={name:"vibish",age:24,gender:"male"}
 
 
 
+#Case
+case "$a" in
+    "") echo "You didnt entered anything";;
+    [0-9]) echo "You have entered number between 0 and 9";;
+    [a-z]) echo "You have entered apha";;
+    *) echo "You entered other";; 
+esac
 
+
+
+
+
+
+
+exit 0
+
+if [ $a -ne $b ]; then
+echo $a is not equal to $b
+else
+echo $a is equal to $b
+fi
+
+exit 0
+
+
+
+
+select day in "${list[@]}"
+do 
+echo $day
+break
+done
+
+exit 0
+
+#special parameters
+
+
+if [ $# -ne 2 ]; then
+    echo "Please provide 2 args"
+    echo "Usage : #0 need 2 args"
+    exit 1
+fi
+exit 0
+
+# Sample text
+text="Hello World! 123"
+
+# [:alpha:] - All letters (upper and lowercase)
+echo "Alpha: $(echo "$text" | grep -o '[[:alpha:]]')"
+
+# [:alnum:] - All letters and numbers
+echo "Alnum: $(echo "$text" | grep -o '[[:alnum:]]')"
+
+# [:lower:] - Lowercase letters
+echo "Lower: $(echo "$text" | grep -o '[[:lower:]]')"
+
+# [:punct:] - Punctuation characters
+echo "Punct: $(echo "$text" | grep -o '[[:punct:]]')"
+
+# [:upper:] - Uppercase letters
+echo "Upper: $(echo "$text" | grep -o '[[:upper:]]')"
+
+# [:space:] - Whitespace characters
+echo "Space: $(echo "$text" | grep -o '[[:space:]]' | tr -d '\n')"
+
+# [:digit:] - Numbers
+echo "Digit: $(echo "$text" | grep -o '[[:digit:]]')"
+
+# [:word:] - All letters and numbers (equivalent to [:alnum:])
+echo "Word: $(echo "$text" | grep -o '[[:alnum:]]')"
+
+
+#sample with Sed
+
+# [:alpha:] - All letters (upper and lowercase) 
+echo "Alpha: $(echo "$text" | sed 's/[^[:alpha:]]//g')" 
+# [:alnum:] - All letters and numbers 
+echo "Alnum: $(echo "$text" | sed 's/[^[:alnum:]]//g')"
+
+
+#sample with awk
+
+# [:alpha:] - All letters (upper and lowercase) 
+echo "Alpha: $(echo "$text" | awk '{gsub(/[^[:alpha:]]/, ""); print}')" 
+# [:alnum:] - All letters and numbers 
+echo "Alnum: $(echo "$text" | awk '{gsub(/[^[:alnum:]]/, ""); print}')"
 
 
 #Arthematic Expansions
@@ -29,8 +116,7 @@ exponents, multiplication, division,
 addition, and subtraction
 '
 
-
-exit 0
+echo $(( $a + $b * $b / $a ** $b % $a))
 
 
 #Parameters Expansions
@@ -69,3 +155,12 @@ This is a multi-line comment.
 It spans multiple lines.
 You can use this anywhere in the script.
 '
+
+
+
+
+
+
+
+
+
