@@ -7,7 +7,7 @@
 
 
 #variables
-read -p "Enter the a value: " a
+# read -p "Enter the a value: " a
 # a=1
 b=2
 student=vibish
@@ -18,6 +18,26 @@ set={1,2,3,4}
 dict={name:"vibish",age:24,gender:"male"}
 
 
+#Read-While
+
+line_num=0
+while read line; do
+    line_num=$(( $line_num + 1 ))
+    echo "$line ---> This is line Number $line_num"
+done < sample
+
+exit 0
+
+#While getopts
+while getopts "c:f:" opt; do
+case "$opt" in
+    c) result= echo $((($OPTARG * (9/5)) + 32 ));;
+    f) result= echo $((($OPTARG - 32) * (5/9) ));;
+    ?);;
+esac
+done
+printf result
+exit 0
 
 #Case
 case "$a" in
@@ -26,10 +46,6 @@ case "$a" in
     [a-z]) echo "You have entered apha";;
     *) echo "You entered other";; 
 esac
-
-
-
-
 
 
 
